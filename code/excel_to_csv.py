@@ -8,4 +8,4 @@ df_data = pd.concat([pd.read_excel(file_nm) for file_nm in glob.glob(DATAPATH + 
 
 print(len(df_data))
 
-df_data.csv(os.path.join(DATAPATH, 'dataset.csv'), encoding='utf-8-sig',)
+df_data.to_csv(os.path.join(DATAPATH, 'dataset.tsv'), encoding='utf-8-sig', index=False, sep='\t')
