@@ -53,9 +53,10 @@ df_data = pd.merge(df_data, df_outcome[['환자번호1', '처방일자3', 'outco
                    how='left', left_on=['환자번호1', '처방일자3'], right_on=['환자번호1', '처방일자3'])
 df_data['surv_month'] = (df_data['outcome_date'] - df_data['처방일자3']) / np.timedelta64(1, 'M')
 
+df_data = df_data.loc[:, ~df_data.columns.duplicated()]
+
 # %%
 df_cancer_data = df_data.query("outcome_date > 처방일자3")
 df_cancer_data.to_csv(os.path.join(DATAPATH, 'breast_cancer_data.csv'), 
                       index=False, 
                       encoding='utf-8-sig')
-# %%
